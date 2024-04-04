@@ -18,358 +18,6 @@ hp4 = lambda x: -2*x/(1+x**2)**2
 h5 = lambda x: x**10
 hp5 = lambda x: 10*x**9
 
-def driver1():
-    N1 = 10
-    N2 = 20
-    N3 = 50
-    N4 = 100
-    
-    [D_N1, x1] = cheb(N1)
-    [D_N2, x2] = cheb(N2)
-    [D_N3, x3] = cheb(N3)
-    [D_N4, x4] = cheb(N4)
-    
-    fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d}{dx}f(x) = e^xsin(5x)$"
-    fig.suptitle(title)
-    axs[0, 0].plot(x1, D_N1@h1(x1)-hp1(x1), color = 'green')
-    axs[0, 0].set_title("N = 10")
-    axs[0, 1].plot(x2, D_N2@h1(x2)-hp1(x2), color = 'green')
-    axs[0, 1].set_title("N = 20")
-    axs[1, 0].plot(x3, D_N3@h1(x3)-hp1(x3), color = 'green')
-    axs[1, 0].set_title("N = 50")
-    axs[1, 1].plot(x4, D_N4@h1(x4)-hp1(x4), color = 'green')
-    axs[1, 1].set_title("N = 100")
-
-    for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
-        
-    plt.show()
-    
-    fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d}{dx}f(x) = |x^3|$"
-    fig.suptitle(title)
-    axs[0, 0].plot(x1, D_N1@h2(x1)-hp2(x1), color = 'green')
-    axs[0, 0].set_title("N = 10")
-    axs[0, 1].plot(x2, D_N2@h2(x2)-hp2(x2), color = 'green')
-    axs[0, 1].set_title("N = 20")
-    axs[1, 0].plot(x3, D_N3@h2(x3)-hp2(x3), color = 'green')
-    axs[1, 0].set_title("N = 50")
-    axs[1, 1].plot(x4, D_N4@h2(x4)-hp2(x4), color = 'green')
-    axs[1, 1].set_title("N = 100")
-
-    for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
-        
-    plt.show()
-    
-    fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d}{dx}f(x) = e^{-x^{-2}}$"
-    fig.suptitle(title)
-    axs[0, 0].plot(x1, D_N1@h3(x1)-hp3(x1), color = 'green')
-    axs[0, 0].set_title("N = 10")
-    axs[0, 1].plot(x2, D_N2@h3(x2)-hp3(x2), color = 'green')
-    axs[0, 1].set_title("N = 20")
-    axs[1, 0].plot(x3, D_N3@h3(x3)-hp3(x3), color = 'green')
-    axs[1, 0].set_title("N = 50")
-    axs[1, 1].plot(x4, D_N4@h3(x4)-hp3(x4), color = 'green')
-    axs[1, 1].set_title("N = 100")
-
-    for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
-        
-    plt.show()
-
-    fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d}{dx}f(x) = \frac{1}{1+x^2}$"
-    fig.suptitle(title)
-    axs[0, 0].plot(x1, D_N1@h4(x1)-hp4(x1), color = 'green')
-    axs[0, 0].set_title("N = 10")
-    axs[0, 1].plot(x2, D_N2@h4(x2)-hp4(x2), color = 'green')
-    axs[0, 1].set_title("N = 20")
-    axs[1, 0].plot(x3, D_N3@h4(x3)-hp4(x3), color = 'green')
-    axs[1, 0].set_title("N = 50")
-    axs[1, 1].plot(x4, D_N4@h4(x4)-hp4(x4), color = 'green')
-    axs[1, 1].set_title("N = 100")
-
-    for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
-        
-    plt.show()
-    
-    fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d}{dx}f(x) = x^{10}$"
-    fig.suptitle(title)
-    axs[0, 0].plot(x1, D_N1@h5(x1)-hp5(x1), color = 'green')
-    axs[0, 0].set_title("N = 10")
-    axs[0, 1].plot(x2, D_N2@h5(x2)-hp5(x2), color = 'green')
-    axs[0, 1].set_title("N = 20")
-    axs[1, 0].plot(x3, D_N3@h5(x3)-hp5(x3), color = 'green')
-    axs[1, 0].set_title("N = 50")
-    axs[1, 1].plot(x4, D_N4@h5(x4)-hp5(x4), color = 'green')
-    axs[1, 1].set_title("N = 100")
-
-    for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
-        
-    plt.show()
-
-def driver2():
-    N = np.arange(1, 51)
-
-    error1 = np.zeros(50)
-    error2 = np.zeros(50)
-    error3 = np.zeros(50)
-    error4 = np.zeros(50)
-    error5 = np.zeros(50)
-
-    for i in range(len(N)):
-        [D_N, x] = cheb(N[i])
-        error1[i] = la.norm(D_N@h1(x) - hp1(x), np.inf)
-        error2[i] = la.norm(D_N@h2(x) - hp2(x), np.inf)
-        error3[i] = la.norm(D_N@h3(x) - hp3(x), np.inf)
-        error4[i] = la.norm(D_N@h4(x) - hp4(x), np.inf)
-        error5[i] = la.norm(D_N@h5(x) - hp5(x), np.inf)
-
-    plt.semilogy(N, error1, '-go')
-    plt.ylim(10**(-15), 10**(2))
-    plt.xlabel("N")
-    plt.ylabel("max error")
-    title1 = r"Accuracy of $\frac{d}{dx}f(x) = e^xsin(5x)$"
-    plt.title(title1)
-    plt.show()
-
-    plt.semilogy(N, error2, '-go')
-    plt.ylim(10**(-15), 10**(2))
-    plt.xlabel("N")
-    plt.ylabel("max error")
-    title2 = r"Accuracy of $\frac{d}{dx}f(x) = |x^3|$"
-    plt.title(title2)
-    plt.show()
-
-    plt.semilogy(N, error3, '-go')
-    plt.ylim(10**(-17), 10**(2))
-    plt.xlabel("N")
-    plt.ylabel("max error")
-    title3 = r"Accuracy of $\frac{d}{dx}f(x) = e^{-x^{-2}}$"
-    plt.title(title3)
-    plt.show()
-
-    plt.semilogy(N, error4, '-go')
-    plt.ylim(10**(-15), 10**(2))
-    plt.xlabel("N")
-    plt.ylabel("max error")
-    title4 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{1}{1+x^2}$"
-    plt.title(title4)
-    plt.show()
-
-    plt.semilogy(N, error5, '-go')
-    plt.ylim(10**(-15), 10**(2))
-    plt.xlabel("N")
-    plt.ylabel("max error")
-    title5 = r"Accuracy of $\frac{d}{dx}f(x) = x^{10}$"
-    plt.title(title5)
-    plt.show()
-
-def driver3():
-   
-    N1 = 10
-    N2 = 20
-    N3 = 50
-    N4 = 100
-   
-    [D2_N1, x1] = cheb2(N1)
-    [D2_N2, x2] = cheb2(N2)
-    [D2_N3, x3] = cheb2(N3)
-    [D2_N4, x4] = cheb2(N4)
-   
-    # Second Derivative Approx e^x*sin(5x)
-    fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d^2}{dx^2}f(x) = e^xsin(5x)$"
-    fig.suptitle(title)
-   
-    axs[0, 0].plot(x1, D2_N1@h1(x1)-hp1(x1), color = 'green')
-    axs[0, 0].set_title("N = 10")
-    axs[0, 1].plot(x2, D2_N2@h1(x2)-hp1(x2), color = 'green')
-    axs[0, 1].set_title("N = 20")
-    axs[1, 0].plot(x3, D2_N3@h1(x3)-hp1(x3), color = 'green')
-    axs[1, 0].set_title("N = 50")
-    axs[1, 1].plot(x4, D2_N4@h1(x4)-hp1(x4), color = 'green')
-    axs[1, 1].set_title("N = 100")
-
-    for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
-       
-    plt.show()
-   
-    # Second Derivative Approx |x^3|
-    fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d^2}{dx^2}f(x) = |x^3|$"
-    fig.suptitle(title)
-   
-    axs[0, 0].plot(x1, D2_N1@h2(x1)-hp2(x1), color = 'green')
-    axs[0, 0].set_title("N = 10")
-    axs[0, 1].plot(x2, D2_N2@h2(x2)-hp2(x2), color = 'green')
-    axs[0, 1].set_title("N = 20")
-    axs[1, 0].plot(x3, D2_N3@h2(x3)-hp2(x3), color = 'green')
-    axs[1, 0].set_title("N = 50")
-    axs[1, 1].plot(x4, D2_N4@h2(x4)-hp2(x4), color = 'green')
-    axs[1, 1].set_title("N = 100")
-
-    for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
-       
-    plt.show()
-   
-    # Second Derivative Approx e^-(x^(-2))
-    fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d^2}{dx^2}f(x) = e^{-x^{-2}}$"
-    fig.suptitle(title)
-   
-    axs[0, 0].plot(x1, D2_N1@h3(x1)-hp3(x1), color = 'green')
-    axs[0, 0].set_title("N = 10")
-    axs[0, 1].plot(x2, D2_N2@h3(x2)-hp3(x2), color = 'green')
-    axs[0, 1].set_title("N = 20")
-    axs[1, 0].plot(x3, D2_N3@h3(x3)-hp3(x3), color = 'green')
-    axs[1, 0].set_title("N = 50")
-    axs[1, 1].plot(x4, D2_N4@h3(x4)-hp3(x4), color = 'green')
-    axs[1, 1].set_title("N = 100")
-
-    for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
-       
-    plt.show()
-   
-    # Second Derivative Approx 1/(1+x^2)
-    fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{1}{1+x^2}$"
-    fig.suptitle(title)
-   
-    axs[0, 0].plot(x1, D2_N1@h4(x1)-hp4(x1), color = 'green')
-    axs[0, 0].set_title("N = 10")
-    axs[0, 1].plot(x2, D2_N2@h4(x2)-hp4(x2), color = 'green')
-    axs[0, 1].set_title("N = 20")
-    axs[1, 0].plot(x3, D2_N3@h4(x3)-hp4(x3), color = 'green')
-    axs[1, 0].set_title("N = 50")
-    axs[1, 1].plot(x4, D2_N4@h4(x4)-hp4(x4), color = 'green')
-    axs[1, 1].set_title("N = 100")
-
-    for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
-       
-    plt.show()
-   
-    # Second Derivative approx x^10
-    fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d^2}{dx^2}f(x) = x^{10}$"
-    fig.suptitle(title)
-    axs[0, 0].plot(x1, D2_N1@h5(x1)-hp5(x1), color = 'green')
-    axs[0, 0].set_title("N = 10")
-    axs[0, 1].plot(x2, D2_N2@h5(x2)-hp5(x2), color = 'green')
-    axs[0, 1].set_title("N = 20")
-    axs[1, 0].plot(x3, D2_N3@h5(x3)-hp5(x3), color = 'green')
-    axs[1, 0].set_title("N = 50")
-    axs[1, 1].plot(x4, D2_N4@h5(x4)-hp5(x4), color = 'green')
-    axs[1, 1].set_title("N = 100")
-
-    for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
-       
-    plt.show()
-   
-def driver4():
-   
-    N = np.arange(1, 51)
-
-    error1 = np.zeros(50)
-    error2 = np.zeros(50)
-    error3 = np.zeros(50)
-    error4 = np.zeros(50)
-    error5 = np.zeros(50)
-
-    for i in range(len(N)):
-        [D2_N, x] = cheb2(N[i])
-        error1[i] = la.norm(D2_N@h1(x) - hp1(x), np.inf)
-        error2[i] = la.norm(D2_N@h2(x) - hp2(x), np.inf)
-        error3[i] = la.norm(D2_N@h3(x) - hp3(x), np.inf)
-        error4[i] = la.norm(D2_N@h4(x) - hp4(x), np.inf)
-        error5[i] = la.norm(D2_N@h5(x) - hp5(x), np.inf)
-
-    plt.semilogy(N, error1, '-go')
-    #plt.ylim(10**(-15), 10**(2))
-    plt.xlabel("N")
-    plt.ylabel("max error")
-    title1 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = e^xsin(5x)$"
-    plt.title(title1)
-    plt.show()
-
-    plt.semilogy(N, error2, '-go')
-    #plt.ylim(10**(-15), 10**(2))
-    plt.xlabel("N")
-    plt.ylabel("max error")
-    title2 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = |x^3|$"
-    plt.title(title2)
-    plt.show()
-
-    plt.semilogy(N, error3, '-go')
-    #plt.ylim(10**(-17), 10**(2))
-    plt.xlabel("N")
-    plt.ylabel("max error")
-    title3 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = e^{-x^{-2}}$"
-    plt.title(title3)
-    plt.show()
-
-    plt.semilogy(N, error4, '-go')
-    #plt.ylim(10**(-15), 10**(2))
-    plt.xlabel("N")
-    plt.ylabel("max error")
-    title4 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{1}{1+x^2}$"
-    plt.title(title4)
-    plt.show()
-
-    plt.semilogy(N, error5, '-go')
-    #plt.ylim(10**(-15), 10**(2))
-    plt.xlabel("N")
-    plt.ylabel("max error")
-    title5 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = x^{10}$"
-    plt.title(title5)
-    plt.show()
-
-def cheb2(N):
-    [D_N, x] = cheb(N)
-    D2_N = np.dot(D_N, D_N)
-    return [D2_N, x]
-
 def cheb(N):
     x = np.cos((np.pi * np.arange(N + 1)) / N)
     diag = np.array(-x[1:-1]/(2*(1 - x[1:-1]**2)))
@@ -406,9 +54,55 @@ def cheb(N):
         D_N[N, 0] = -(1/2)*(-1)**N
 
     return [D_N, x]
-    
 
-driver1()
-driver2()
-driver3()
-driver4()
+def cheb2(N):
+    [D_N, x] = cheb(N)
+    D2_N = np.dot(D_N, D_N)
+    return [D2_N, x]
+
+def cheb_ab(a, b, N):
+    x = np.cos((np.pi * np.arange(N + 1)) / N)
+    x = ((b - a)/2)*x+((b+a)/2) # need to transform x-values for general [a, b]
+    diag = np.array(-x[1:-1]/(2*(1 - x[1:-1]**2)))
+    diag = np.append(x[1], diag)
+    diag = np.append(diag, x[-1])
+    
+    D_N = np.diag(diag)
+
+    # first and last enteries
+    D_N[0, 0] = (2*N**2 + 1) / 6
+    D_N[N, N] = -(2*N**2 + 1) / 6
+
+    if (N == 1):
+        D_N[0, N] = (1/2)*(-1)**N
+        D_N[N, 0] = -(1/2)*(-1)**N
+        
+        return (D_N, x)
+    else:
+        for i in range(N+1):
+            for j in range(N+1):
+                if (i != j):
+                    if ((i == 0) and (j != N)):
+                        D_N[i, j] = (2*(-1)**j) / (1 - x[j])
+                    elif ((i == N) and (j != N)):
+                        D_N[i, j] = -(2*(-1)**(N+j)) / (1 + x[j])
+                    elif ((j == 0) and (i != N)):
+                        D_N[i, j] = (-1/2)*((-1)**i / (1 - x[i]))
+                    elif ((j == N) and (i != N)):
+                        D_N[i, j] = (1/2)*((-1)**(N+i) / (1 + x[i]))
+                    elif ((1 < i < N) or (1 < j < N)):
+                        D_N[i, j] = (-1)**(i+j) / (x[i] - x[j])
+        
+        D_N[0, N] = (1/2)*(-1)**N
+        D_N[N, 0] = -(1/2)*(-1)**N
+
+    return [D_N, x]
+
+def cent_diff(x, h):
+    hp1_app = (h1(x+h)-h1(x-h))/(2*h)
+    hp2_app = (h2(x+h)-h2(x-h))/(2*h)
+    hp3_app = (h3(x+h)-h3(x-h))/(2*h)
+    hp4_app = (h4(x+h)-h4(x-h))/(2*h)
+    hp5_app = (h5(x+h)-h5(x-h))/(2*h)
+      
+    return [hp1_app, hp2_app, hp3_app, hp4_app, hp5_app]
