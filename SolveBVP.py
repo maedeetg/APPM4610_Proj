@@ -22,50 +22,32 @@ def eval_pqr2(x):
     r = np.sin(8*x)
     return p, q, r
 
-def spectral_test(x, N, alpha, beta):
-    p, q, r = eval_pqr1(x)
-   
+def eval_pqr3(x):
+    # y'' = p(x)y'+q(x)y + r(x)
+    p = np.zeros(len(x))
+    q = np.zeros(len(x))
+    r = np.exp(4*x)
+    return p, q, r
+
+def spectral(p, q, r, x, N, alpha, beta):
     [D, x_nodes] = cheb(N)
     [D2, x_nodes] = cheb2(N)
-   
-    # Construct matrix A and vector rhs
-    A = D2[1:N, 1:N] + np.diag(p[1:N]) @ D[1:N, 1:N] + np.diag(q[1:N])
-    print(A)
-    rhs = r[1:N]
-   
-    # Apply boundary conditions
-    rhs[0] -= (1/(x_nodes[1]-x_nodes[0])**2 - (1/(2*(x_nodes[1]-x_nodes[0])))*(-p[1])) * alpha
-    rhs[-1] -= (1/(x_nodes[-1]-x_nodes[-2])**2 + (1/(2*(x_nodes[-1]-x_nodes[-2])))*(-p[-1])) * beta
 
-   
-    # Solve the linear system
+    A = D2 # A is (N+1)x(N+1)
+
+    for i in range(1, N+1):
+        A[0, i] = 0
+        
+    for j in range(0, N):
+        A[j, 0] = 0
+
+    A[0, 0] = 1
+    A[N, N] = 1
+
+    rhs = r
+    rhs[0] = alpha
+    rhs[-1] = beta
+
     yapp = sp.linalg.spsolve(A, rhs)
-   
-    # Append boundary values to the solution
-    yapp = np.concatenate(([alpha], yapp, [beta]))
-   
-    return x_nodes, yapp
-
-
-def spectral(x, N, alpha, beta):
-    p, q, r = eval_pqr2(x)
-   
-    [D, x_nodes] = cheb(N)
-    [D2, x_nodes] = cheb2(N)
-   
-    # Construct matrix A and vector rhs
-    A = D2[1:N, 1:N] + np.diag(p[1:N]) @ D[1:N, 1:N] + np.diag(q[1:N])
-    rhs = r[1:N]
-   
-    # Apply boundary conditions
-    rhs[0] -= (1/(x_nodes[1]-x_nodes[0])**2 - (1/(2*(x_nodes[1]-x_nodes[0])))*(-p[1])) * alpha
-    rhs[-1] -= (1/(x_nodes[-1]-x_nodes[-2])**2 + (1/(2*(x_nodes[-1]-x_nodes[-2])))*(-p[-1])) * beta
-
-   
-    # Solve the linear system
-    yapp = sp.linalg.spsolve(A, rhs)
-   
-    # Append boundary values to the solution
-    yapp = np.concatenate(([alpha], yapp, [beta]))
    
     return x_nodes, yapp

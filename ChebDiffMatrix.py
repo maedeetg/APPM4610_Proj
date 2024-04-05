@@ -4,19 +4,24 @@ import math
 import numpy.linalg as la
 
 h1 = lambda x: np.exp(x)*np.sin(5*x)
-hp1 = lambda x: np.exp(x)*np.cos(5*x)*5 + np.exp(x)*np.sin(5*x)
+hp1 = lambda x: 5*np.exp(x)*np.cos(5*x) + np.exp(x)*np.sin(5*x)
+hpp1 = lambda x: -24*np.exp(x)*np.sin(5*x) + 10*np.exp(x)*np.cos(5*x)
 
 h2 = lambda x: abs(x**3)
-hp2 = lambda x: 3*x**5/(abs(x**3))
+hp2 = lambda x: 3*x*abs(x)
+hpp2 = lambda x: 6*abs(x)
 
 h3 = lambda x: np.exp(-x**(-2))
 hp3 = lambda x: 2*np.exp(-x**(-2))/x**3
+hpp3 = lambda x: (4*np.exp(-x**(-2)) - 6*x**2*np.exp(-x**(-2)))/x**6
 
 h4 = lambda x: 1/(1+x**2)
-hp4 = lambda x: -2*x/(1+x**2)**2
+hp4 = lambda x: (-2*x)/(1+x**2)**2
+hpp4 = lambda x: (6*x**2 - 2)/(1+x**2)**3
 
 h5 = lambda x: x**10
 hp5 = lambda x: 10*x**9
+hpp5 = lambda x: 90*x**8
 
 def cheb(N):
     x = np.cos((np.pi * np.arange(N + 1)) / N)
