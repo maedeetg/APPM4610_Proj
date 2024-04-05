@@ -49,7 +49,6 @@ def driver1():
     axs[1, 0].plot(x3t, yapp3t, color = 'green')
     axs[1, 0].set_title("N = 50")
     axs[1, 1].plot(x4t, yapp4t, color = 'green')
-    axs[1, 1].plot(x4t, yex(x4t))
     axs[1, 1].set_title("N = 100")
 
     for ax in axs.flat:

@@ -4,7 +4,9 @@ import math
 import numpy.linalg as la
 import ChebDiffMatrix
 from ChebDiffMatrix import cheb, cheb2, cheb_ab, cent_diff, cent_diff2
-import scipy.sparse
+import scipy.sparse as sp
+from scipy.sparse import csc_matrix
+import scipy.sparse.linalg as la2
 
 def eval_pqr1(x):
     # y'' = p(x)y'+q(x)y + r(x)
@@ -28,6 +30,7 @@ def spectral_test(x, N, alpha, beta):
    
     # Construct matrix A and vector rhs
     A = D2[1:N, 1:N] + np.diag(p[1:N]) @ D[1:N, 1:N] + np.diag(q[1:N])
+    print(A)
     rhs = r[1:N]
    
     # Apply boundary conditions
