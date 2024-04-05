@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import math
 import numpy.linalg as la
 import ChebDiffMatrix
-from ChebDiffMatrix import cheb, cheb2, cheb_ab, cent_diff, cent_diff2
+from ChebDiffMatrix import cheb, cheb2, cheb_ab, cheb2_ab, cent_diff, cent_diff2
 import scipy.sparse as sp
 from scipy.sparse import csc_matrix
 import scipy.sparse.linalg as la2
@@ -29,9 +29,8 @@ def eval_pqr3(x):
     r = np.exp(4*x)
     return p, q, r
 
-def spectral(p, q, r, x, N, alpha, beta):
-    [D, x_nodes] = cheb(N)
-    [D2, x_nodes] = cheb2(N)
+def spectral(p, q, r, N, a, b, alpha, beta):
+    [D2, x_nodes] = cheb2_ab(a, b, N)
 
     A = D2 # A is (N+1)x(N+1)
 
@@ -39,7 +38,7 @@ def spectral(p, q, r, x, N, alpha, beta):
         A[0, i] = 0
         
     for j in range(0, N):
-        A[j, 0] = 0
+        A[N, j] = 0
 
     A[0, 0] = 1
     A[N, N] = 1
@@ -48,6 +47,6 @@ def spectral(p, q, r, x, N, alpha, beta):
     rhs[0] = alpha
     rhs[-1] = beta
 
-    yapp = sp.linalg.spsolve(A, rhs)
+    yapp = la.inv(A)@rhs
    
-    return x_nodes, yapp
+    return yapp

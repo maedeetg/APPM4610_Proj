@@ -65,6 +65,11 @@ def cheb2(N):
     D2_N = np.dot(D_N, D_N)
     return [D2_N, x]
 
+def cheb2_ab(a, b, N):
+    [D_N, x] = cheb_ab(a, b, N)
+    D2_N = np.dot(D_N, D_N)
+    return [D2_N, x]
+
 def cheb_ab(a, b, N):
     x = np.cos((np.pi * np.arange(N + 1)) / N)
     x = ((b - a)/2)*x+((b+a)/2) # need to transform x-values for general [a, b]
