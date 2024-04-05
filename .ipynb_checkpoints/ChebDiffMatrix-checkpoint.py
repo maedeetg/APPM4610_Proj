@@ -106,3 +106,12 @@ def cent_diff(x, h):
     hp5_app = (h5(x+h)-h5(x-h))/(2*h)
       
     return [hp1_app, hp2_app, hp3_app, hp4_app, hp5_app]
+
+def cent_diff2(x, h):
+    hp1_app = (h1(x+h)-2*h1(x) + h1(x-h))/(h**2)
+    hp2_app = (h2(x+h)-2*h2(x) + h2(x-h))/(h**2)
+    hp3_app = (h3(x+h)-2*h3(x) + h3(x-h))/(h**2)
+    hp4_app = (h4(x+h)-2*h4(x) + h4(x-h))/(h**2)
+    hp5_app = (h5(x+h)-2*h5(x) + h5(x-h))/(h**2)
+      
+    return [hp1_app, hp2_app, hp3_app, hp4_app, hp5_app]
