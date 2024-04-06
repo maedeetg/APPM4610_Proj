@@ -29,6 +29,18 @@ def eval_pqr3(x):
     r = np.exp(4*x)
     return p, q, r
 
+def eval_pqr4(x):
+    p = np.zeros(len(x))
+    q = 4*np.ones(len(x))
+    r = -4*x
+    return p, q, r
+
+def eval_pqr5(x):
+    p = np.zeros(len(x))
+    q = -4*np.ones(len(x))
+    r = np.cos(x)
+    return p, q, r
+
 def spectral(p, q, r, N, a, b, alpha, beta):
     [D2, x_nodes] = cheb2_ab(a, b, N)
 

@@ -67,6 +67,7 @@ def driver1():
     axs[1, 0].plot(x3, D_N3@h2(x3)-hp2(x3), color = 'green')
     axs[1, 0].set_title("N = 50")
     axs[1, 1].plot(x4, D_N4@h2(x4)-hp2(x4), color = 'green')
+    # print(D_N4@h2(x4), hp2(x4))
     axs[1, 1].set_title("N = 100")
 
     for ax in axs.flat:
@@ -87,6 +88,7 @@ def driver1():
     axs[1, 0].plot(x3, D_N3@h3(x3)-hp3(x3), color = 'green')
     axs[1, 0].set_title("N = 50")
     axs[1, 1].plot(x4, D_N4@h3(x4)-hp3(x4), color = 'green')
+    # print("deriv approx", D_N4@h3(x4), "actual deriv", hp3(x4), 'func', h3(x4))
     axs[1, 1].set_title("N = 100")
 
     for ax in axs.flat:
@@ -452,9 +454,9 @@ def driver6():
        
     plt.show()
 
-# driver1()
+driver1()
 # driver2()
-driver3()
-driver4()
+# driver3()
+# driver4()
 # driver5()
-driver6()
+# driver6()
