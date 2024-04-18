@@ -6,17 +6,101 @@ from scipy.sparse import csc_matrix
 import scipy.sparse as sp
 import numpy.linalg as la1
 
+def driver():
+
+# this code considers the following boundary value
+# problem 
+# - d/dx( k(x) du/dx) +q(x)u(x) = f(x) for x in (a,b)
+# u(a) = u(b) = 0
+
+# exact solution
+     u = lambda x: x**2-x
+
+     a = 0
+     b = 1 
+     
+# N = number of nodes +1;
+     N = 10**5
+# space between nodes
+     h = (b-a)/N
+     
+     xh = np.linspace(a,b,N+1)
+
+     A = make_Matrix(xh,h,N)
+     rhs = make_rhs(xh,h,N);
+     
+# solve for the approximate solution 
+# at the interior nodes
+     sol = sp.linalg.spsolve(A,rhs)
+
+# create the vector with the approximations at the 
+# nodes     
+     uapp = np.zeros(N+1)
+     
+     for j in range(1,N):
+         uapp[j] = sol[j-1]
+         
+     uex = u(xh)
+     
+     abserr = np.linalg.norm(uapp-uex)
+     print(abserr)
+     
+     plt.plot(xh,uapp,label = 'FEM aprox')
+     plt.plot(xh,uex,label = 'Exact')
+     plt.xlabel('x')
+     plt.legend(loc = 'upper left')
+     plt.show()
+
+     err = np.zeros(N+1)
+     for j in range(0,N+1):
+          err[j] = abs(uapp[j]-uex[j])
+          
+          
+     plt.plot(xh,err,label = 'FEM aprox')
+     plt.xlabel('x')
+     plt.xlabel('absolute error')
+     plt.legend(loc = 'upper left')
+     plt.show()
+
+     N = np.arange(2, 51)
+     err_norms = np.zeros(49)
+
+     for i in range(len(N)):
+         print(N[i])
+         h = (b-a)/N[i]
+         print(h)
+         xh = np.linspace(a, b, N[i]+1)
+         A = make_Matrix(xh,h,N[i])
+         rhs = make_rhs(xh,h,N[i])
+         sol = sp.linalg.spsolve(A,rhs)
+
+         uapp = np.zeros(N[i]+1)
+         
+         for j in range(1,N[i]):
+             uapp[j] = -sol[j-1]
+
+         uex = u(xh)
+         err_norms[i] = la1.norm(uapp - uex, np.inf)
+
+     plt.semilogy(N, err_norms, '-go')
+     plt.xlabel("N")
+     plt.ylabel("max error")
+     plt.title("Accuracy of BVP with Finite Element")
+     plt.show()
+
+     return
 def eval_k(x):
-     k = 1
+     k = x
      return k
       
 def eval_q(x):
-      q = 0
+      q = 4
       return q        
 
 def eval_f(x):
-     f = np.exp(4*x)
+     f = 4*x**2 -8*x+1
      return f
+
       
 def eval_stiffD(x,xj):
        # evaluates integrand for diagonal of 
@@ -110,3 +194,5 @@ def make_rhs(x,h,N):
         rhs[j] = (1/h)*tmp1[0] + (1/h)*tmp2[0]
      
      return(rhs)
+     
+driver()     

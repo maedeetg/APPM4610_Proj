@@ -69,6 +69,7 @@ def driver1(): # for u_xx = e^(4x)
     title = "Error in Spectral Collocation Approximation"
     fig.suptitle(title)
     axs[0, 0].plot(x1, yapp1t - yex(x1), color = 'green')
+    print(yapp1t)
     axs[0, 0].set_title("N = 10")
     axs[0, 1].plot(x2, yapp2t - yex(x2), color = 'green')
     axs[0, 1].set_title("N = 20")
@@ -91,9 +92,9 @@ def driver2():
     alpha = 0
     beta = 0
     
-    N = np.arange(1, 51)
+    N = np.arange(2, 51)
 
-    error1 = np.zeros(50)
+    error1 = np.zeros(49)
 
     yex = lambda x: (np.exp(4*x) - x*np.sinh(4)-np.cosh(4))/16
 
@@ -103,8 +104,6 @@ def driver2():
         yapp1t = spectral(p1, q1, r1, N[i], a, b, alpha, beta)
         error1[i] = la.norm(yapp1t - yex(x), np.inf)
 
-    print(error1)
-
     plt.semilogy(N, error1, '-go')
     plt.ylim(10**(-17), 10**(2))
     plt.xlabel("N")
@@ -112,5 +111,6 @@ def driver2():
     title1 = r"Accuracy of Spectral Collocation BVP"
     plt.title(title1)
     plt.show()
-    
+
+driver1()
 driver2()

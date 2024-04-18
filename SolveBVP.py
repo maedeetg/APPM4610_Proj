@@ -43,9 +43,9 @@ def eval_pqr5(x):
 
 def spectral(p, q, r, N, a, b, alpha, beta):
     [D2, x_nodes] = cheb2_ab(a, b, N)
-
-    A = D2 # A is (N+1)x(N+1)
-
+    
+    A = D2
+    
     for i in range(1, N+1):
         A[0, i] = 0
         
@@ -54,7 +54,7 @@ def spectral(p, q, r, N, a, b, alpha, beta):
 
     A[0, 0] = 1
     A[N, N] = 1
-
+    
     rhs = r
     rhs[0] = alpha
     rhs[-1] = beta
@@ -62,3 +62,4 @@ def spectral(p, q, r, N, a, b, alpha, beta):
     yapp = la.inv(A)@rhs
    
     return yapp
+

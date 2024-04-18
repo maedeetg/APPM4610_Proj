@@ -429,9 +429,7 @@ def driver6():
     fig.suptitle(r"Error in Spectral and Centered Difference Approximations")
     
     axs[0].plot(x, D_N@h1(x) - hpp1(x), label = 'spectral', color = 'green')
-    print(D_N@h1(x) - hp1(x))
     axs[0].plot(x, hp1_app - hpp1(x), label = 'centered', color = 'blue')
-    print(hp1_app - hp1(x))
     axs[0].legend()
 
     axs[1].plot(x, D_N@h2(x) - hpp2(x), label = 'spectral', color = 'green')
@@ -454,9 +452,9 @@ def driver6():
        
     plt.show()
 
-driver1()
+# driver1()
 # driver2()
 # driver3()
 # driver4()
 # driver5()
-# driver6()
+driver6()

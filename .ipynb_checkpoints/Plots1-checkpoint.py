@@ -55,7 +55,7 @@ def driver1():
     for ax in fig.get_axes():
         ax.label_outer()
         
-   # plt.show()
+    plt.show()
     
     fig, axs = plt.subplots(2, 2)
     title = r"Error in $\frac{d}{dx}f(x) = |x^3|$"
@@ -67,7 +67,7 @@ def driver1():
     axs[1, 0].plot(x3, D_N3@h2(x3)-hp2(x3), color = 'green')
     axs[1, 0].set_title("N = 50")
     axs[1, 1].plot(x4, D_N4@h2(x4)-hp2(x4), color = 'green')
-    print("deriv approx", D_N4@h2(x4), "actual deriv", hp2(x4), 'func', h2(x4))
+    # print(D_N4@h2(x4), hp2(x4))
     axs[1, 1].set_title("N = 100")
 
     for ax in axs.flat:
@@ -76,7 +76,7 @@ def driver1():
     for ax in fig.get_axes():
         ax.label_outer()
         
-   # plt.show()
+    plt.show()
     
     fig, axs = plt.subplots(2, 2)
     title = r"Error in $\frac{d}{dx}f(x) = e^{-x^{-2}}$"
@@ -88,7 +88,7 @@ def driver1():
     axs[1, 0].plot(x3, D_N3@h3(x3)-hp3(x3), color = 'green')
     axs[1, 0].set_title("N = 50")
     axs[1, 1].plot(x4, D_N4@h3(x4)-hp3(x4), color = 'green')
-    print("deriv approx", D_N4@h3(x4), "actual deriv", hp3(x4), 'func', h3(x4))
+    # print("deriv approx", D_N4@h3(x4), "actual deriv", hp3(x4), 'func', h3(x4))
     axs[1, 1].set_title("N = 100")
 
     for ax in axs.flat:
@@ -97,7 +97,7 @@ def driver1():
     for ax in fig.get_axes():
         ax.label_outer()
         
-    #plt.show()
+    plt.show()
 
     fig, axs = plt.subplots(2, 2)
     title = r"Error in $\frac{d}{dx}f(x) = \frac{1}{1+x^2}$"
@@ -117,7 +117,7 @@ def driver1():
     for ax in fig.get_axes():
         ax.label_outer()
         
-    #plt.show()
+    plt.show()
     
     fig, axs = plt.subplots(2, 2)
     title = r"Error in $\frac{d}{dx}f(x) = x^{10}$"
@@ -137,7 +137,7 @@ def driver1():
     for ax in fig.get_axes():
         ax.label_outer()
         
-   # plt.show()
+    plt.show()
 
 
 # plots of convergence of D_N
@@ -429,9 +429,7 @@ def driver6():
     fig.suptitle(r"Error in Spectral and Centered Difference Approximations")
     
     axs[0].plot(x, D_N@h1(x) - hpp1(x), label = 'spectral', color = 'green')
-    print(D_N@h1(x) - hp1(x))
     axs[0].plot(x, hp1_app - hpp1(x), label = 'centered', color = 'blue')
-    print(hp1_app - hp1(x))
     axs[0].legend()
 
     axs[1].plot(x, D_N@h2(x) - hpp2(x), label = 'spectral', color = 'green')
@@ -454,9 +452,9 @@ def driver6():
        
     plt.show()
 
-driver1()
+# driver1()
 # driver2()
 # driver3()
 # driver4()
 # driver5()
-# driver6()
+driver6()
