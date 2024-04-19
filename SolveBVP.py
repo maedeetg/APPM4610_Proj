@@ -56,10 +56,25 @@ def spectral(p, q, r, N, a, b, alpha, beta):
     A[N, N] = 1
     
     rhs = r
-    rhs[0] = alpha
-    rhs[-1] = beta
+    rhs[0] = beta
+    rhs[-1] = alpha
 
     yapp = la.inv(A)@rhs
    
     return yapp
+
+# def spectral2(p, q, r, N, a, b, alpha, beta):
+#     [D2, x_nodes] = cheb2_ab(a, b, N)
+#     # print(la.inv(D2)@r)
+
+#     A = D2[1:(N), 1:(N)]
+#     rhs = r[1:(N),]
+    
+#     yapp = np.zeros(N+1)
+#     yapp[1:N,] = la.inv(A)@rhs
+#     yapp[0] = 0
+#     yapp[-1] = 0
+#     yapp = yapp + (x_nodes + 1)/2
+   
+#     return yapp
 

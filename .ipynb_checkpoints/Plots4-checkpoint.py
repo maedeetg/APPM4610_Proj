@@ -119,11 +119,11 @@ def driver_fd():
          h = int((b-a)/N[i])
          x = np.linspace(a, b, N[i]+1)
          yapp = make_FDmatDir(x, h, N[i], alpha, beta)
-         err_norms[i] = la1.norm(yapp - y(x), np.inf)
+         err_norms[i] = la1.norm(yapp - y(x))
 
      plt.semilogy(N, err_norms, '-go')
      plt.xlabel("N")
-     plt.ylabel("max error")
+     plt.ylabel("error")
      plt.title("Accuracy of BVP with Finite Difference")
      plt.show()
 
@@ -233,11 +233,11 @@ def driver_fd_SP():
          h = int((b-a)/N[i])
          x = np.linspace(a, b, N[i]+1)
          yapp = make_FDmatDir_SP(x, h, N[i], alpha, beta)
-         err_norms[i] = la1.norm(yapp - y(x), np.inf)
+         err_norms[i] = la1.norm(yapp - y(x))
 
      plt.semilogy(N, err_norms, '-go')
      plt.xlabel("N")
-     plt.ylabel("max error")
+     plt.ylabel("error")
      plt.title("Accuracy of BVP with Finite Difference")
      plt.show()
      return
@@ -383,16 +383,16 @@ def driver_FEM():
              uapp[j] = -sol[j-1]
 
          uex = u(xh)
-         err_norms[i] = la1.norm(uapp - uex, np.inf)
+         err_norms[i] = la1.norm(uapp - uex)
 
      plt.semilogy(N, err_norms, '-go')
      plt.xlabel("N")
-     plt.ylabel("max error")
+     plt.ylabel("error")
      plt.title("Accuracy of BVP with Finite Element")
      plt.show()
 
      return
 
-# driver_fd()
-# driver_fd_SP()
+driver_fd()
+driver_fd_SP()
 driver_FEM()

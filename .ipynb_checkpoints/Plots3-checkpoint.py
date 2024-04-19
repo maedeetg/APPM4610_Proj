@@ -159,7 +159,8 @@ def driver3():
         ax.label_outer()
        
     plt.show()
-    
+
+
 def driver4(): # for u_xx = 4e^2x
     # Boundary data
     a = 0
