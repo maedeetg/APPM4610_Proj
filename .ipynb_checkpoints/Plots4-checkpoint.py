@@ -27,10 +27,10 @@ def driver_fd():
      N3 = 50
      N4 = 100
     
-     h1 =  int((b-a)/N1)
-     h2 =  int((b-a)/N2)
-     h3 =  int((b-a)/N3)
-     h4 =  int((b-a)/N4)
+     h1 =  (b-a)/N1
+     h2 =  (b-a)/N2
+     h3 =  (b-a)/N3
+     h4 =  (b-a)/N4
      
      x1 = np.linspace(a,b,N1+1)
      x2 = np.linspace(a,b,N2+1)
@@ -116,7 +116,7 @@ def driver_fd():
      err_norms = np.zeros(49)
 
      for i in range(len(N)):
-         h = int((b-a)/N[i])
+         h = (b-a)/N[i]
          x = np.linspace(a, b, N[i]+1)
          yapp = make_FDmatDir(x, h, N[i], alpha, beta)
          err_norms[i] = la1.norm(yapp - y(x))
@@ -141,10 +141,10 @@ def driver_fd_SP():
      N3 = 50
      N4 = 100
     
-     h1 =  int((b-a)/N1)
-     h2 =  int((b-a)/N2)
-     h3 =  int((b-a)/N3)
-     h4 =  int((b-a)/N4)
+     h1 =  (b-a)/N1
+     h2 =  (b-a)/N2
+     h3 =  (b-a)/N3
+     h4 =  (b-a)/N4
      
      x1 = np.linspace(a,b,N1+1)
      x2 = np.linspace(a,b,N2+1)
@@ -180,7 +180,10 @@ def driver_fd_SP():
     #######################################################
 
      y = lambda x: (np.exp(4*x) - x*np.sinh(4)-np.cosh(4))/16
-             
+     print('nodes', x1)
+     print('app', yapp1)
+     print('ex', y(x1))
+
      yex1 = y(x1)
      yex2 = y(x2)
      yex3 = y(x3)
@@ -230,7 +233,7 @@ def driver_fd_SP():
      err_norms = np.zeros(49)
 
      for i in range(len(N)):
-         h = int((b-a)/N[i])
+         h = (b-a)/N[i]
          x = np.linspace(a, b, N[i]+1)
          yapp = make_FDmatDir_SP(x, h, N[i], alpha, beta)
          err_norms[i] = la1.norm(yapp - y(x))
@@ -371,6 +374,7 @@ def driver_FEM():
      err_norms = np.zeros(49)
 
      for i in range(len(N)):
+         
          h = (b-a)/N[i]
          xh = np.linspace(a, b, N[i]+1)
          A = make_Matrix(xh,h,N[i])
@@ -393,6 +397,6 @@ def driver_FEM():
 
      return
 
-driver_fd()
+# driver_fd()
 driver_fd_SP()
-driver_FEM()
+# driver_FEM()

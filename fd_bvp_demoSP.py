@@ -25,20 +25,21 @@ def make_FDmatDir_SP(x,h,N,alpha,beta):
      (p,q,r) = eval_pqr2(x)
      
 # create the finite difference matrix     
-     Matypp = (N/2)**2*(sp.diags(2*np.ones(N-1)) -sp.diags(np.ones(N-2),-1) - 
-           sp.diags(np.ones(N-2),1))
-     #print(Matypp)
+     Matypp = (1/h**2)*(np.diag(2*np.ones(N-1)) -np.diag(np.ones(N-2),-1) - 
+           np.diag(np.ones(N-2),1))
+    
            
-     Matyp = (N/4)*(sp.diags(np.ones(N-2),1)-sp.diags(np.ones(N-2),-1))
-     #print(Matypp)
-
-     A = Matypp +sp.diags(p[1:N],0)@Matyp + sp.diags(q[1:N])
+     Matyp = (1/(2*h))*(np.diag(np.ones(N-2),1)-np.diag(np.ones(N-2),-1))
+     
+     B = np.matmul(np.diag(p[1:N],0),Matyp)
+     
+     A = Matypp + B+ np.diag(q[1:N])
 
 # create the right hand side rhs: (N-1) in size
      rhs = -r[1:N]
 #  update with boundary data   
-     rhs[0] = rhs[0] + ((N/2)**2 - (N/4)*-p[1])*alpha
-     rhs[N-2] = rhs[N-2] + ((N/2)**2+(N/4)*-p[N-1])*beta
+     rhs[0] = rhs[0] + ((1/h**2) - (1/(2*h)) - p[1])*alpha
+     rhs[N-2] = rhs[N-2] + ((1/h**2) + (1/(2*h)) - p[N-1])*beta
    
 # solve for the approximate solution
      sol = sp.linalg.spsolve(A,rhs)
@@ -49,6 +50,6 @@ def make_FDmatDir_SP(x,h,N,alpha,beta):
      for j in range(1,N):
          yapp[j] = sol[j-1]
          
-     yapp[N] = beta  
+     yapp[-1] = beta  
 
      return yapp

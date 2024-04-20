@@ -19,10 +19,10 @@ def make_FDmatDir(x,h,N,alpha,beta):
      (p,q,r) = eval_pqr(x)
       
 # create the finite difference matrix     
-     Matypp = (N/2)**2*(np.diag(2*np.ones(N-1)) -np.diag(np.ones(N-2),-1) - 
+     Matypp = (1/h**2)*(np.diag(2*np.ones(N-1)) -np.diag(np.ones(N-2),-1) - 
            np.diag(np.ones(N-2),1))
            
-     Matyp = (N/4)*(np.diag(np.ones(N-2),1)-np.diag(np.ones(N-2),-1))
+     Matyp = (1/(2*h))*(np.diag(np.ones(N-2),1)-np.diag(np.ones(N-2),-1))
      
      B = np.matmul(np.diag(p[1:N],0),Matyp)
      
@@ -31,8 +31,8 @@ def make_FDmatDir(x,h,N,alpha,beta):
 # create the right hand side rhs: (N-1) in size
      rhs = -r[1:N]
 #  update with boundary data   
-     rhs[0] = rhs[0] + ((N/2)**2 - (N/4)*-p[1])*alpha
-     rhs[N-2] = rhs[N-2] + ((N/2)**2+(N/4)*-p[N-1])*beta
+     rhs[0] = rhs[0] + ((1/h**2) - (1/(2*h)) - p[1])*alpha
+     rhs[N-2] = rhs[N-2] + ((1/h**2) + (1/(2*h)) - p[N-1])*beta
      
 # solve for the approximate solution
 
