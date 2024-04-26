@@ -98,6 +98,7 @@ def driver2():
     N2 = 20
     N3 = 50
     N4 = 100
+    
     ''' interval'''
     a = -1
     b = 1
@@ -146,6 +147,7 @@ def driver2():
     y2 = dividedDiffTable(xint2, y2, N2+1)
     y3 = dividedDiffTable(xint3, y3, N3+1)
     y4 = dividedDiffTable(xint4, y4, N4+1)
+    
     ''' evaluate lagrange poly '''
     for kk in range(Neval+1):
         yeval_l1[kk] = eval_lagrange(xeval[kk],xint1,yint1,N1)
@@ -187,6 +189,7 @@ def driver3():
     N2 = 20
     N3 = 50
     N4 = 100
+    
     ''' interval'''
     a = -1
     b = 1
@@ -235,6 +238,7 @@ def driver3():
     y2 = dividedDiffTable(xint2, y2, N2+1)
     y3 = dividedDiffTable(xint3, y3, N3+1)
     y4 = dividedDiffTable(xint4, y4, N4+1)
+    
     ''' evaluate lagrange poly '''
     for kk in range(Neval+1):
         yeval_l1[kk] = eval_lagrange(xeval[kk],xint1,yint1,N1)

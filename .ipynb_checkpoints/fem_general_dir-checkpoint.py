@@ -7,16 +7,16 @@ import scipy.sparse as sp
 import numpy.linalg as la1
 
 def eval_k(x):
-     k = 1
-     return k
+    k = -1
+    return k
       
 def eval_q(x):
-      q = 0
-      return q        
+    q = 0
+    return q        
 
 def eval_f(x):
-     f = np.exp(4*x)
-     return f
+    f = np.exp(4*x)
+    return f
       
 def eval_stiffD(x,xj):
        # evaluates integrand for diagonal of 
@@ -30,7 +30,6 @@ def eval_stiffO(x,xj,xk):
      val = eval_q(x)*(x-xj)*(xk-x)
      return val        
 
-
 def eval_rhsInt1(x,xk):
      # evaluate the integrand for the rhs 
      # left side of hat
@@ -43,9 +42,7 @@ def eval_rhsInt2(x,xk):
      val = eval_f(x)*(xk-x)
      return val
           
-     
 def make_Matrix(x,h,N):
-
      # make the entries of the mass matrix
      d_main = np.zeros(N-1)
      d_sub = np.zeros(N-2)

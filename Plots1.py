@@ -40,7 +40,7 @@ def driver1():
     ############################################################################
 
     fig, axs = plt.subplots(2, 2)
-    title = r"Spectral Collocation Approximation of $\frac{d}{dx}f(x) = e^xsin(5x)$"
+    title = r"Spectral Collocation Approximation of $\frac{d}{dx}f(x) = \frac{d}{dx}e^xsin(5x)$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D_N1@h1(x1), color = 'green')
     axs[0, 0].plot(x4, hp1(x4), color = 'black', alpha = 0.5)
@@ -56,17 +56,16 @@ def driver1():
     axs[1, 1].set_title("N = 100")
 
     for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
+        ax.set(xlabel = 'x', ylabel = "f'(x)")
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
         
     plt.show()
 
     ############################################################################
     
     fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d}{dx}f(x) = e^xsin(5x)$"
+    title = r"Error in $\frac{d}{dx}f(x) = \frac{d}{dx}e^xsin(5x)$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D_N1@h1(x1)-hp1(x1), color = 'green')
     axs[0, 0].set_title("N = 10")
@@ -80,15 +79,14 @@ def driver1():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
         
     plt.show()
 
     ############################################################################
 
     fig, axs = plt.subplots(2, 2)
-    title = r"Spectral Collocation Approximation of $\frac{d}{dx}f(x) = e^xsin(5x)$"
+    title = r"Spectral Collocation Approximation of $\frac{d}{dx}f(x) = \frac{d}{dx}|x^3|$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D_N1@h2(x1), color = 'green')
     axs[0, 0].plot(x4, hp2(x4), color = 'black', alpha = 0.5)
@@ -104,17 +102,16 @@ def driver1():
     axs[1, 1].set_title("N = 100")
 
     for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
+        ax.set(xlabel = 'x', ylabel = "f'(x)")
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
         
     plt.show()
 
     ############################################################################
     
     fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d}{dx}f(x) = |x^3|$"
+    title = r"Error in $\frac{d}{dx}f(x) = \frac{d}{dx}|x^3|$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D_N1@h2(x1)-hp2(x1), color = 'green')
     axs[0, 0].set_title("N = 10")
@@ -129,15 +126,14 @@ def driver1():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
         
     plt.show()
 
     ############################################################################
 
     fig, axs = plt.subplots(2, 2)
-    title = r"Spectral Collocation Approximation of $\frac{d}{dx}f(x) = e^xsin(5x)$"
+    title = r"Spectral Collocation Approximation of $\frac{d}{dx}f(x) = \frac{d}{dx}e^{-x^{-2}}$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D_N1@h3(x1), color = 'green')
     axs[0, 0].plot(x4, hp3(x4), color = 'black', alpha = 0.5)
@@ -153,17 +149,16 @@ def driver1():
     axs[1, 1].set_title("N = 100")
 
     for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
+        ax.set(xlabel = 'x', ylabel = "f'(x)")
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
         
     plt.show()
 
     ############################################################################
     
     fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d}{dx}f(x) = e^{-x^{-2}}$"
+    title = r"Error in $\frac{d}{dx}f(x) = \frac{d}{dx}e^{-x^{-2}}$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D_N1@h3(x1)-hp3(x1), color = 'green')
     axs[0, 0].set_title("N = 10")
@@ -178,15 +173,14 @@ def driver1():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
-        
+    fig.tight_layout()
+    
     plt.show()
 
     ############################################################################
 
     fig, axs = plt.subplots(2, 2)
-    title = r"Spectral Collocation Approximation of $\frac{d}{dx}f(x) = e^xsin(5x)$"
+    title = r"Spectral Collocation Approximation of $\frac{d}{dx}f(x) = \frac{d}{dx}\frac{1}{1+x^2}$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D_N1@h4(x1), color = 'green')
     axs[0, 0].plot(x4, hp4(x4), color = 'black', alpha = 0.5)
@@ -202,17 +196,16 @@ def driver1():
     axs[1, 1].set_title("N = 100")
 
     for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
+        ax.set(xlabel = 'x', ylabel = "f'(x)")
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
         
     plt.show()
 
     ############################################################################
 
     fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d}{dx}f(x) = \frac{1}{1+x^2}$"
+    title = r"Error in $\frac{d}{dx}f(x) = \frac{d}{dx}\frac{1}{1+x^2}$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D_N1@h4(x1)-hp4(x1), color = 'green')
     axs[0, 0].set_title("N = 10")
@@ -226,15 +219,14 @@ def driver1():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
         
     plt.show()
 
     ############################################################################
 
     fig, axs = plt.subplots(2, 2)
-    title = r"Spectral Collocation Approximation of $\frac{d}{dx}f(x) = e^xsin(5x)$"
+    title = r"Spectral Collocation Approximation of $\frac{d}{dx}f(x) = \frac{d}{dx}x^{10}$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D_N1@h5(x1), color = 'green')
     axs[0, 0].plot(x4, hp5(x4), color = 'black', alpha = 0.5)
@@ -250,17 +242,16 @@ def driver1():
     axs[1, 1].set_title("N = 100")
 
     for ax in axs.flat:
-        ax.set(xlabel = 'x', ylabel = 'error')
+        ax.set(xlabel = 'x', ylabel = "f'(x)")
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
         
     plt.show()
 
     ############################################################################
     
     fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d}{dx}f(x) = x^{10}$"
+    title = r"Error in $\frac{d}{dx}f(x) = \frac{d}{dx}x^{10}$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D_N1@h5(x1)-hp5(x1), color = 'green')
     axs[0, 0].set_title("N = 10")
@@ -274,8 +265,7 @@ def driver1():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
         
     plt.show()
 
@@ -310,7 +300,7 @@ def driver2():
     plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title1 = r"Accuracy of $\frac{d}{dx}f(x) = e^xsin(5x)$"
+    title1 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{d}{dx}e^xsin(5x)$"
     plt.title(title1)
     plt.show()
 
@@ -320,7 +310,7 @@ def driver2():
     plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title2 = r"Accuracy of $\frac{d}{dx}f(x) = |x^3|$"
+    title2 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{d}{dx}|x^3|$"
     plt.title(title2)
     plt.show()
 
@@ -330,7 +320,7 @@ def driver2():
     plt.ylim(10**(-17), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title3 = r"Accuracy of $\frac{d}{dx}f(x) = e^{-x^{-2}}$"
+    title3 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{d}{dx}e^{-x^{-2}}$"
     plt.title(title3)
     plt.show()
 
@@ -340,7 +330,7 @@ def driver2():
     plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title4 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{1}{1+x^2}$"
+    title4 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{d}{dx}\frac{1}{1+x^2}$"
     plt.title(title4)
     plt.show()
 
@@ -350,7 +340,7 @@ def driver2():
     plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title5 = r"Accuracy of $\frac{d}{dx}f(x) = x^{10}$"
+    title5 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{d}{dx}x^{10}$"
     plt.title(title5)
     plt.show()
 
@@ -373,7 +363,32 @@ def driver3():
    
     # Second Derivative Approx e^x*sin(5x)
     fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d^2}{dx^2}f(x) = e^xsin(5x)$"
+    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}e^xsin(5x)$"
+    fig.suptitle(title)
+   
+    axs[0, 0].plot(x1, D2_N1@h1(x1), color = 'green')
+    axs[0, 0].plot(x1, hpp1(x1), color = 'black', alpha = 0.5)
+    axs[0, 0].set_title("N = 10")
+    axs[0, 1].plot(x2, D2_N2@h1(x2), color = 'green')
+    axs[0, 1].plot(x2, hpp1(x2), color = 'black', alpha = 0.5)
+    axs[0, 1].set_title("N = 20")
+    axs[1, 0].plot(x3, D2_N3@h1(x3), color = 'green')
+    axs[1, 0].plot(x3, hpp1(x3), color = 'black', alpha = 0.5)
+    axs[1, 0].set_title("N = 50")
+    axs[1, 1].plot(x4, D2_N4@h1(x4), color = 'green')
+    axs[1, 1].plot(x4, hpp1(x4), color = 'black', alpha = 0.5)
+    axs[1, 1].set_title("N = 100")
+
+    for ax in axs.flat:
+        ax.set(xlabel = 'x', ylabel = "f''(x)")
+
+    fig.tight_layout()
+       
+    plt.show()
+
+    # Second Derivative Approx e^x*sin(5x)
+    fig, axs = plt.subplots(2, 2)
+    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}e^xsin(5x)$"
     fig.suptitle(title)
    
     axs[0, 0].plot(x1, D2_N1@h1(x1)-hpp1(x1), color = 'green')
@@ -388,16 +403,39 @@ def driver3():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
        
     plt.show()
 
     ############################################################################
    
+    fig, axs = plt.subplots(2, 2)
+    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}|x^3|$"
+    fig.suptitle(title)
+   
+    axs[0, 0].plot(x1, D2_N1@h2(x1), color = 'green')
+    axs[0, 0].plot(x1, hpp2(x1), color = 'black', alpha = 0.5)
+    axs[0, 0].set_title("N = 10")
+    axs[0, 1].plot(x2, D2_N2@h2(x2), color = 'green')
+    axs[0, 1].plot(x2, hpp2(x2), color = 'black', alpha = 0.5)
+    axs[0, 1].set_title("N = 20")
+    axs[1, 0].plot(x3, D2_N3@h2(x3), color = 'green')
+    axs[1, 0].plot(x3, hpp2(x3), color = 'black', alpha = 0.5)
+    axs[1, 0].set_title("N = 50")
+    axs[1, 1].plot(x4, D2_N4@h2(x4), color = 'green')
+    axs[1, 1].plot(x4, hpp2(x4), color = 'black', alpha = 0.5)
+    axs[1, 1].set_title("N = 100")
+
+    for ax in axs.flat:
+        ax.set(xlabel = 'x', ylabel = "f''(x)")
+
+    fig.tight_layout()
+       
+    plt.show()
+    
     # Second Derivative Approx |x^3|
     fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d^2}{dx^2}f(x) = |x^3|$"
+    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}|x^3|$"
     fig.suptitle(title)
    
     axs[0, 0].plot(x1, D2_N1@h2(x1)-hpp2(x1), color = 'green')
@@ -412,16 +450,39 @@ def driver3():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
        
     plt.show()
 
     ############################################################################
    
+    fig, axs = plt.subplots(2, 2)
+    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}e^{-x^{-2}}$"
+    fig.suptitle(title)
+   
+    axs[0, 0].plot(x1, D2_N1@h3(x1), color = 'green')
+    axs[0, 0].plot(x1, hpp3(x1), color = 'black', alpha = 0.5)
+    axs[0, 0].set_title("N = 10")
+    axs[0, 1].plot(x2, D2_N2@h3(x2), color = 'green')
+    axs[0, 1].plot(x2, hpp3(x2), color = 'black', alpha = 0.5)
+    axs[0, 1].set_title("N = 20")
+    axs[1, 0].plot(x3, D2_N3@h3(x3), color = 'green')
+    axs[1, 0].plot(x3, hpp3(x3), color = 'black', alpha = 0.5)
+    axs[1, 0].set_title("N = 50")
+    axs[1, 1].plot(x4, D2_N4@h3(x4), color = 'green')
+    axs[1, 1].plot(x4, hpp3(x4), color = 'black', alpha = 0.5)
+    axs[1, 1].set_title("N = 100")
+
+    for ax in axs.flat:
+        ax.set(xlabel = 'x', ylabel = "f''(x)")
+
+    fig.tight_layout()
+       
+    plt.show()
+    
     # Second Derivative Approx e^-(x^(-2))
     fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d^2}{dx^2}f(x) = e^{-x^{-2}}$"
+    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}e^{-x^{-2}}$"
     fig.suptitle(title)
    
     axs[0, 0].plot(x1, D2_N1@h3(x1)-hpp3(x1), color = 'green')
@@ -436,16 +497,39 @@ def driver3():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
        
     plt.show()
 
     ############################################################################
    
+    fig, axs = plt.subplots(2, 2)
+    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}\frac{1}{1+x^2}$"
+    fig.suptitle(title)
+   
+    axs[0, 0].plot(x1, D2_N1@h4(x1), color = 'green')
+    axs[0, 0].plot(x1, hpp4(x1), color = 'black', alpha = 0.5)
+    axs[0, 0].set_title("N = 10")
+    axs[0, 1].plot(x2, D2_N2@h4(x2), color = 'green')
+    axs[0, 1].plot(x2, hpp4(x2), color = 'black', alpha = 0.5)
+    axs[0, 1].set_title("N = 20")
+    axs[1, 0].plot(x3, D2_N3@h4(x3), color = 'green')
+    axs[1, 0].plot(x3, hpp4(x3), color = 'black', alpha = 0.5)
+    axs[1, 0].set_title("N = 50")
+    axs[1, 1].plot(x4, D2_N4@h4(x4), color = 'green')
+    axs[1, 1].plot(x4, hpp4(x4), color = 'black', alpha = 0.5)
+    axs[1, 1].set_title("N = 100")
+
+    for ax in axs.flat:
+        ax.set(xlabel = 'x', ylabel = "f''(x)")
+
+    fig.tight_layout()
+       
+    plt.show()
+    
     # Second Derivative Approx 1/(1+x^2)
     fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{1}{1+x^2}$"
+    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}\frac{1}{1+x^2}$"
     fig.suptitle(title)
    
     axs[0, 0].plot(x1, D2_N1@h4(x1)-hpp4(x1), color = 'green')
@@ -459,17 +543,40 @@ def driver3():
 
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
-
-    for ax in fig.get_axes():
-        ax.label_outer()
+        
+    fig.tight_layout()
        
     plt.show()
 
     ############################################################################
    
+    fig, axs = plt.subplots(2, 2)
+    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}x^{10}$"
+    fig.suptitle(title)
+   
+    axs[0, 0].plot(x1, D2_N1@h5(x1), color = 'green')
+    axs[0, 0].plot(x1, hpp5(x1), color = 'black', alpha = 0.5)
+    axs[0, 0].set_title("N = 10")
+    axs[0, 1].plot(x2, D2_N2@h5(x2), color = 'green')
+    axs[0, 1].plot(x2, hpp5(x2), color = 'black', alpha = 0.5)
+    axs[0, 1].set_title("N = 20")
+    axs[1, 0].plot(x3, D2_N3@h5(x3), color = 'green')
+    axs[1, 0].plot(x3, hpp5(x3), color = 'black', alpha = 0.5)
+    axs[1, 0].set_title("N = 50")
+    axs[1, 1].plot(x4, D2_N4@h5(x4), color = 'green')
+    axs[1, 1].plot(x4, hpp5(x4), color = 'black', alpha = 0.5)
+    axs[1, 1].set_title("N = 100")
+
+    for ax in axs.flat:
+        ax.set(xlabel = 'x', ylabel = "f''(x)")
+
+    fig.tight_layout()
+       
+    plt.show()
+    
     # Second Derivative approx x^10
     fig, axs = plt.subplots(2, 2)
-    title = r"Error in $\frac{d^2}{dx^2}f(x) = x^{10}$"
+    title = r"Error in $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}x^{10}$"
     fig.suptitle(title)
     axs[0, 0].plot(x1, D2_N1@h5(x1)-hpp5(x1), color = 'green')
     axs[0, 0].set_title("N = 10")
@@ -483,8 +590,7 @@ def driver3():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
        
     plt.show()
 
@@ -520,7 +626,7 @@ def driver4():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title1 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = e^xsin(5x)$"
+    title1 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}e^xsin(5x)$"
     plt.title(title1)
     plt.show()
 
@@ -530,7 +636,7 @@ def driver4():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title2 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = |x^3|$"
+    title2 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}|x^3|$"
     plt.title(title2)
     plt.show()
 
@@ -540,7 +646,7 @@ def driver4():
     #plt.ylim(10**(-17), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title3 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = e^{-x^{-2}}$"
+    title3 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}e^{-x^{-2}}$"
     plt.title(title3)
     plt.show()
 
@@ -550,7 +656,7 @@ def driver4():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title4 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{1}{1+x^2}$"
+    title4 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}\frac{1}{1+x^2}$"
     plt.title(title4)
     plt.show()
 
@@ -560,7 +666,7 @@ def driver4():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title5 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = x^{10}$"
+    title5 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}x^{10}$"
     plt.title(title5)
     plt.show()
 
@@ -600,8 +706,7 @@ def driver5():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
        
     plt.show()
 
@@ -646,7 +751,7 @@ def driver5():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title1 = r"Accuracy of $\frac{d}{dx}f(x) = e^xsin(5x)$"
+    title1 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{d}{dx}e^xsin(5x)$"
     plt.title(title1)
     plt.show()
 
@@ -658,7 +763,7 @@ def driver5():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title2 = r"Accuracy of $\frac{d}{dx}f(x) = |x^3|$"
+    title2 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{d}{dx}|x^3|$"
     plt.title(title2)
     plt.show()
 
@@ -670,7 +775,7 @@ def driver5():
     #plt.ylim(10**(-17), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title3 = r"Accuracy of $\frac{d}{dx}f(x) = e^{-x^{-2}}$"
+    title3 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{d}{dx}e^{-x^{-2}}$"
     plt.title(title3)
     plt.show()
 
@@ -682,7 +787,7 @@ def driver5():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title4 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{1}{1+x^2}$"
+    title4 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{d}{dx}\frac{1}{1+x^2}$"
     plt.title(title4)
     plt.show()
 
@@ -694,7 +799,7 @@ def driver5():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title5 = r"Accuracy of $\frac{d}{dx}f(x) = x^{10}$"
+    title5 = r"Accuracy of $\frac{d}{dx}f(x) = \frac{d}{dx}x^{10}$"
     plt.title(title5)
     plt.show()
 
@@ -733,8 +838,7 @@ def driver6():
     for ax in axs.flat:
         ax.set(xlabel = 'x', ylabel = 'error')
 
-    for ax in fig.get_axes():
-        ax.label_outer()
+    fig.tight_layout()
        
     plt.show()
 
@@ -779,7 +883,7 @@ def driver6():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title1 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = e^xsin(5x)$"
+    title1 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}e^xsin(5x)$"
     plt.title(title1)
     plt.show()
 
@@ -791,7 +895,7 @@ def driver6():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title2 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = |x^3|$"
+    title2 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}|x^3|$"
     plt.title(title2)
     plt.show()
 
@@ -803,7 +907,7 @@ def driver6():
     #plt.ylim(10**(-17), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title3 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = e^{-x^{-2}}$"
+    title3 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}e^{-x^{-2}}$"
     plt.title(title3)
     plt.show()
 
@@ -815,7 +919,7 @@ def driver6():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title4 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{1}{1+x^2}$"
+    title4 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}\frac{1}{1+x^2}$"
     plt.title(title4)
     plt.show()
 
@@ -827,7 +931,7 @@ def driver6():
     #plt.ylim(10**(-15), 10**(2))
     plt.xlabel("N")
     plt.ylabel("error")
-    title5 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = x^{10}$"
+    title5 = r"Accuracy of $\frac{d^2}{dx^2}f(x) = \frac{d^2}{dx^2}x^{10}$"
     plt.title(title5)
     plt.show()
 
@@ -836,6 +940,6 @@ def driver6():
 # driver1()
 # driver2()
 # driver3()
-# driver4()
+driver4()
 driver5()
 driver6()

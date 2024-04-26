@@ -12,33 +12,7 @@ def eval_pqr1(x):
     # y'' = p(x)y'+q(x)y + r(x)
     p = np.zeros(len(x))
     q = np.zeros(len(x))
-    r = 4*np.exp(2*x)
-    return p, q, r
-
-def eval_pqr2(x):
-    # y'' = p(x)y'+q(x)y + r(x)
-    p = -4*np.ones(len(x))
-    q = -np.exp(x)
-    r = np.sin(8*x)
-    return p, q, r
-
-def eval_pqr3(x):
-    # y'' = p(x)y'+q(x)y + r(x)
-    p = np.zeros(len(x))
-    q = np.zeros(len(x))
     r = np.exp(4*x)
-    return p, q, r
-
-def eval_pqr4(x):
-    p = np.zeros(len(x))
-    q = 4*np.ones(len(x))
-    r = -4*x
-    return p, q, r
-
-def eval_pqr5(x):
-    p = np.zeros(len(x))
-    q = -4*np.ones(len(x))
-    r = np.cos(x)
     return p, q, r
 
 def spectral(p, q, r, N, a, b, alpha, beta):
@@ -60,6 +34,48 @@ def spectral(p, q, r, N, a, b, alpha, beta):
     rhs[-1] = alpha
 
     yapp = la.inv(A)@rhs
+   
+    return yapp
+
+def spectral2(p, q, r, N, a, b, alpha, beta):
+    [D, x_nodes] = cheb_ab(a, b, N)
+    D2 = np.matmul(D, D)
+    #[D2, x_nodes] = cheb2_ab(a, b, N)
+
+    A = np.zeros((N+1,N+1))
+    A[1:N,:] = D2[1:N,:]
+    A[N,:] = D[N,:]
+    A[0,0] = 1
+    
+    rhs = r
+    rhs[0] = beta
+    rhs[-1] = alpha
+
+    Ainv = np.linalg.inv(A)
+    yapp = np.matmul(Ainv,rhs)
+
+    #yapp = la.inv(A)@rhs
+   
+    return yapp
+
+def spectral3(p, q, r, N, a, b, alpha, beta):
+    [D, x_nodes] = cheb_ab(a, b, N)
+    D2 = np.matmul(D, D)
+    #[D2, x_nodes] = cheb2_ab(a, b, N)
+
+    A = np.zeros((N+1,N+1))
+    A[1:N,:] = D2[1:N,:]
+    A[N,:] = D[N,:]
+    A[0,:] = D[0,:]
+    
+    rhs = r
+    rhs[0] = beta
+    rhs[-1] = alpha
+
+    Ainv = np.linalg.inv(A)
+    yapp = np.matmul(Ainv,rhs)
+
+    #yapp = la.inv(A)@rhs
    
     return yapp
 
