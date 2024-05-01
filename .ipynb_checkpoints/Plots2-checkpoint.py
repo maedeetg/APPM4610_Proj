@@ -9,27 +9,34 @@ import scipy
 
 # HOMOGENOUS DIRICHLET BC
 def homog_dir_BC():
-    a = -1
-    b = 1
-    alpha = 0
-    beta = 0
+    # a = -1
+    # b = 1
+    # alpha = 0
+    # beta = 0
 
-    y = lambda x: (np.exp(4*x) - x*np.sinh(4) - np.cosh(4))/16
+    # y = lambda x: (np.exp(4*x) - x*np.sinh(4) - np.cosh(4))/16
+
+    a = 0
+    b = 1
+    alpha = 1
+    beta = np.exp(2)
+    
+    y = lambda x: np.exp(2*x)
 
     N1 = 10
     N2 = 20
     N3 = 50
     N4 = 100
    
-    [D2_N1, x1] = cheb2(N1)
-    [D2_N2, x2] = cheb2(N2)
-    [D2_N3, x3] = cheb2(N3)
-    [D2_N4, x4] = cheb2(N4)
+    [D2_N1, x1] = cheb2_ab(a, b, N1)
+    [D2_N2, x2] = cheb2_ab(a, b, N2)
+    [D2_N3, x3] = cheb2_ab(a, b, N3)
+    [D2_N4, x4] = cheb2_ab(a, b, N4)
     
-    p1, q1, r1 = eval_pqr3(x1)
-    p2, q2, r2 = eval_pqr3(x2)
-    p3, q3, r3 = eval_pqr3(x3)
-    p4, q4, r4 = eval_pqr3(x4)
+    p1, q1, r1 = eval_pqr1(x1)
+    p2, q2, r2 = eval_pqr1(x2)
+    p3, q3, r3 = eval_pqr1(x3)
+    p4, q4, r4 = eval_pqr1(x4)
 
     yapp1t = spectral(p1, q1, r1, N1, a, b, alpha, beta)
     yapp2t = spectral(p2, q2, r2, N2, a, b, alpha, beta)
@@ -81,20 +88,20 @@ def homog_dir_BC():
     plt.show()
 
 def homog_dir_BC_conv():
-    a = -1
+    a = 0
     b = 1
-    alpha = 0
-    beta = 0
+    alpha = 1
+    beta = np.exp(2)
     
     N = np.arange(2, 51)
 
     error1 = np.zeros(49)
 
-    y = lambda x: (np.exp(4*x) - x*np.sinh(4)-np.cosh(4))/16
+    y = lambda x: np.exp(2*x)
 
     for i in range(len(N)):
-        [D_N, x] = cheb2(N[i])
-        p1, q1, r1 = eval_pqr3(x)
+        [D_N, x] = cheb2_ab(a, b, N[i])
+        p1, q1, r1 = eval_pqr1(x)
         yapp1t = spectral(p1, q1, r1, N[i], a, b, alpha, beta)
         error1[i] = la.norm(yapp1t - y(x))
 
@@ -389,9 +396,9 @@ def homog_neum_BC():
     plt.show()
 
 # homog_dir_BC()
-# homog_dir_BC_conv()
+homog_dir_BC_conv()
 # inhomog_dir_BC()
 # inhomog_dir_BC_conv1()
 # inhomog_dir_BC2()
 # inhomog_dir_BC_conv2()
-homog_neum_BC()
+# homog_neum_BC()

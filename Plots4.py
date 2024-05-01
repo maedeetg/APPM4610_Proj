@@ -934,9 +934,9 @@ def fd_neumann_BC():
 
      return
 
-# fd_homog_BC()
+#fd_homog_BC()
 fd_SP_homog_BC()
-# FEM_homog_BC()
+FEM_homog_BC()
 # fd_inhomog_BC1()
-# fd_SP_inhomog_BC1()
-# FEM_inhomog_BC1()
+fd_SP_inhomog_BC1()
+FEM_inhomog_BC1()

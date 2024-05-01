@@ -8,11 +8,18 @@ import scipy.sparse as sp
 from scipy.sparse import csc_matrix
 import scipy.sparse.linalg as la2
 
+# def eval_pqr1(x):
+#     # y'' = p(x)y'+q(x)y + r(x)
+#     p = np.zeros(len(x))
+#     q = np.zeros(len(x))
+#     r = np.exp(4*x)
+#     return p, q, r
+
 def eval_pqr1(x):
     # y'' = p(x)y'+q(x)y + r(x)
     p = np.zeros(len(x))
     q = np.zeros(len(x))
-    r = np.exp(4*x)
+    r = 4*np.exp(2*x)
     return p, q, r
 
 def spectral(p, q, r, N, a, b, alpha, beta):

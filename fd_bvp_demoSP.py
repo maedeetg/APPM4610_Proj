@@ -6,14 +6,14 @@ import scipy.sparse as sp
 from scipy.sparse import csc_matrix
 import scipy.sparse.linalg as la2
     
-def eval_pqr1(x):
-     p = 0*x
-     q = 0*x
-     r = np.exp(4*x)
+# def eval_pqr1(x):
+#      p = 0*x
+#      q = 0*x
+#      r = np.exp(4*x)
      
-     return(p,q,r)    
+#      return(p,q,r)    
 
-def eval_pqr2(x):
+def eval_pqr1(x):
      p = 0*x
      q = 0*x
      r = 4*np.exp(2*x)

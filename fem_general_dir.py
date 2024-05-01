@@ -6,6 +6,18 @@ from scipy.sparse import csc_matrix
 import scipy.sparse as sp
 import numpy.linalg as la1
 
+# def eval_k(x):
+#     k = -1
+#     return k
+      
+# def eval_q(x):
+#     q = 0
+#     return q        
+
+# def eval_f(x):
+#     f = np.exp(4*x)
+#     return f
+
 def eval_k(x):
     k = -1
     return k
@@ -15,7 +27,7 @@ def eval_q(x):
     return q        
 
 def eval_f(x):
-    f = np.exp(4*x)
+    f = 4*np.exp(2*x)
     return f
       
 def eval_stiffD(x,xj):

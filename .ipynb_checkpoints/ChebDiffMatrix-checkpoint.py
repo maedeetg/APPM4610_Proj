@@ -65,48 +65,20 @@ def cheb2(N):
     D2_N = np.dot(D_N, D_N)
     return [D2_N, x]
 
+def cheb_ab(a, b, N):
+    c = 1/2
+    [D_N, x] = cheb(N)
+    D_N2 = D_N/c
+    
+    x = np.cos((np.pi * np.arange(N + 1)) / N)
+    x = ((b - a)/2)*x+((b+a)/2) # need to transform x-values for general [a, b]
+
+    return [D_N2, x]
+    
 def cheb2_ab(a, b, N):
     [D_N, x] = cheb_ab(a, b, N)
     D2_N = np.dot(D_N, D_N)
     return [D2_N, x]
-
-def cheb_ab(a, b, N):
-    x = np.cos((np.pi * np.arange(N + 1)) / N)
-    x = ((b - a)/2)*x+((b+a)/2) # need to transform x-values for general [a, b]
-    diag = np.array(-x[1:-1]/(2*(1 - x[1:-1]**2)))
-    diag = np.append(x[1], diag)
-    diag = np.append(diag, x[-1])
-    
-    D_N = np.diag(diag)
-
-    # first and last enteries
-    D_N[0, 0] = (2*N**2 + 1) / 6
-    D_N[N, N] = -(2*N**2 + 1) / 6
-
-    if (N == 1):
-        D_N[0, N] = (1/2)*(-1)**N
-        D_N[N, 0] = -(1/2)*(-1)**N
-        
-        return (D_N, x)
-    else:
-        for i in range(N+1):
-            for j in range(N+1):
-                if (i != j):
-                    if ((i == 0) and (j != N)):
-                        D_N[i, j] = (2*(-1)**j) / (1 - x[j])
-                    elif ((i == N) and (j != N)):
-                        D_N[i, j] = -(2*(-1)**(N+j)) / (1 + x[j])
-                    elif ((j == 0) and (i != N)):
-                        D_N[i, j] = (-1/2)*((-1)**i / (1 - x[i]))
-                    elif ((j == N) and (i != N)):
-                        D_N[i, j] = (1/2)*((-1)**(N+i) / (1 + x[i]))
-                    elif ((1 < i < N) or (1 < j < N)):
-                        D_N[i, j] = (-1)**(i+j) / (x[i] - x[j])
-        
-        D_N[0, N] = (1/2)*(-1)**N
-        D_N[N, 0] = -(1/2)*(-1)**N
-
-    return [D_N, x]
 
 def cent_diff(x, h):
     hp1_app = (h1(x+h)-h1(x-h))/(2*h)
@@ -125,3 +97,27 @@ def cent_diff2(x, h):
     hp5_app = (h5(x+h)-2*h5(x) + h5(x-h))/(h**2)
       
     return [hp1_app, hp2_app, hp3_app, hp4_app, hp5_app]
+
+def driver():
+    f = lambda x: np.exp(2*x)
+    fp = lambda x: 2*np.exp(2*x)
+
+    a1 = 0
+    b1 = 1
+    N = 9
+
+    [D_n1, x1] = cheb(N)
+    [D_N, D_N2, x2] = cheb_ab(a1, b1, N)
+    yapp1 = D_n1@f(x1)
+    yapp2 = D_N@f(x2)
+    yapp3 = D_N2@f(x2)
+
+    print(la.norm(yapp1 - fp(x1)))
+    print(la.norm(yapp2 - fp(x2)))
+    print(la.norm(yapp3 - fp(x2)))
+    return
+    
+    
+
+#driver()
+# driver2()
