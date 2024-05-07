@@ -273,13 +273,13 @@ def driver1():
 
 # plots of convergence of D_N
 def driver2():
-    N = np.arange(1, 51)
+    N = np.arange(1, 16)
 
-    error1 = np.zeros(50)
-    error2 = np.zeros(50)
-    error3 = np.zeros(50)
-    error4 = np.zeros(50)
-    error5 = np.zeros(50)
+    error1 = np.zeros(15)
+    error2 = np.zeros(15)
+    error3 = np.zeros(15)
+    error4 = np.zeros(15)
+    error5 = np.zeros(15)
 
     for i in range(len(N)):
         [D_N, x] = cheb(N[i])
@@ -599,13 +599,13 @@ def driver3():
 # convergence plots for second deriv
 def driver4():
    
-    N = np.arange(1, 51)
+    N = np.arange(1, 16)
 
-    error1 = np.zeros(50)
-    error2 = np.zeros(50)
-    error3 = np.zeros(50)
-    error4 = np.zeros(50)
-    error5 = np.zeros(50)
+    error1 = np.zeros(15)
+    error2 = np.zeros(15)
+    error3 = np.zeros(15)
+    error4 = np.zeros(15)
+    error5 = np.zeros(15)
 
     for i in range(len(N)):
         [D2_N, x] = cheb2(N[i])
@@ -938,8 +938,8 @@ def driver6():
     ############################################################################
 
 # driver1()
-# driver2()
+driver2()
 # driver3()
 driver4()
-driver5()
-driver6()
+# driver5()
+# driver6()

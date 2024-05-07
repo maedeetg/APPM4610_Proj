@@ -6,8 +6,13 @@ from scipy.sparse import csc_matrix
 import scipy.sparse as sp
 import numpy.linalg as la1
 
+# this code considers the following boundary value
+# problem 
+# - d/dx( k(x) du/dx) +q(x)u(x) = f(x) for x in (a,b)
+# u(a) = u(b) = 0
+
 # def eval_k(x):
-#     k = -1
+#     k = 1
 #     return k
       
 # def eval_q(x):
@@ -15,7 +20,7 @@ import numpy.linalg as la1
 #     return q        
 
 # def eval_f(x):
-#     f = np.exp(4*x)
+#     f = -np.exp(x)
 #     return f
 
 def eval_k(x):
@@ -23,12 +28,19 @@ def eval_k(x):
     return k
       
 def eval_q(x):
-    q = 0
+    q = -4
     return q        
 
 def eval_f(x):
-    f = 4*np.exp(2*x)
+    f = -4*x
     return f
+
+# def eval_pqr2(x):
+#     # y'' = p(x)y'+q(x)y + r(x)
+#     p = np.zeros(len(x))
+#     q = np.ones(len(x)*4)
+#     r = -4*x
+#     return p, q, r
       
 def eval_stiffD(x,xj):
        # evaluates integrand for diagonal of 

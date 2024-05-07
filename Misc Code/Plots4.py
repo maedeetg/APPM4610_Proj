@@ -6,8 +6,8 @@ from scipy.sparse import csc_matrix
 import scipy.sparse as sp
 import numpy.linalg as la1
 
-import fd_bvp_demo
-from fd_bvp_demo import eval_pqr1, eval_pqr2, make_FDmatDir
+# import fd_bvp_demo
+# from fd_bvp_demo import eval_pqr1, eval_pqr2, make_FDmatDir
 
 import fd_bvp_demoSP
 from fd_bvp_demoSP import eval_pqr1, eval_pqr2, make_FDmatDir_SP
@@ -15,126 +15,8 @@ from fd_bvp_demoSP import eval_pqr1, eval_pqr2, make_FDmatDir_SP
 import fem_general_dir
 from fem_general_dir import eval_k, eval_q, eval_f, eval_stiffD, eval_stiffO, eval_rhsInt1, eval_rhsInt2, make_Matrix, make_rhs
 
-def fd_homog_BC():
-     a = -1
-     b = 1
-     alpha = 0
-     beta = 0
-
-     # step size
-     N1 = 10
-     N2 = 20
-     N3 = 50
-     N4 = 100
-    
-     h1 = (b-a)/N1
-     h2 = (b-a)/N2
-     h3 = (b-a)/N3
-     h4 = (b-a)/N4
-     
-     x1 = np.linspace(a,b,N1+1)
-     x2 = np.linspace(a,b,N2+1)
-     x3 = np.linspace(a,b,N3+1)
-     x4 = np.linspace(a,b,N4+1)
-
-     p1, q1, r1 = eval_pqr1(x1)
-     p2, q2, r2 = eval_pqr1(x2)
-     p3, q3, r3 = eval_pqr1(x3)
-     p4, q4, r4 = eval_pqr1(x4)
-     
-     yapp1 = make_FDmatDir(x1,p1,q1,r1,h1,N1,alpha,beta)
-     yapp2 = make_FDmatDir(x2,p2,q2,r2,h2,N2,alpha,beta)
-     yapp3 = make_FDmatDir(x3,p3,q3,r3,h3,N3,alpha,beta)
-     yapp4 = make_FDmatDir(x4,p4,q4,r4,h4,N4,alpha,beta)
-
-     fig, axs = plt.subplots(2, 2)
-     title = r"Finite Difference Approximation"
-     fig.suptitle(title)
-     axs[0, 0].plot(x1, yapp1, color = 'green')
-     axs[0, 0].set_title("N = 10")
-     axs[0, 1].plot(x2, yapp2, color = 'green')
-     axs[0, 1].set_title("N = 20")
-     axs[1, 0].plot(x3, yapp3, color = 'green')
-     axs[1, 0].set_title("N = 50")
-     axs[1, 1].plot(x4, yapp4, color = 'green')
-     axs[1, 1].set_title("N = 100")
-
-     for ax in axs.flat:
-         ax.set(xlabel = 'x')
-
-     for ax in fig.get_axes():
-         ax.label_outer()
-        
-     plt.show()
-
-    ######################################################################
-
-     y = lambda x: (np.exp(4*x) - x*np.sinh(4)-np.cosh(4))/16
-             
-     yex1 = y(x1)
-     yex2 = y(x2)
-     yex3 = y(x3)
-     yex4 = y(x4)
-     
-     err1 = np.zeros(N1+1)
-     err2 = np.zeros(N2+1)
-     err3 = np.zeros(N3+1)
-     err4 = np.zeros(N4+1)
-    
-     for j in range(0,N1+1):
-          err1[j] = abs(yapp1[j]-yex1[j])
-         
-     for j in range(0,N2+1):
-          err2[j] = abs(yapp2[j]-yex2[j])
-         
-     for j in range(0,N3+1):
-          err3[j] = abs(yapp3[j]-yex3[j])
-         
-     for j in range(0,N4+1):
-          err4[j] = abs(yapp4[j]-yex4[j])
-
-     fig, axs = plt.subplots(2, 2)
-     title = r"Error in Finite Difference Approximation"
-     fig.suptitle(title)
-     axs[0, 0].plot(x1, err1, color = 'green')
-     axs[0, 0].set_title("N = 10")
-     axs[0, 1].plot(x2, err2, color = 'green')
-     axs[0, 1].set_title("N = 20")
-     axs[1, 0].plot(x3, err3, color = 'green')
-     axs[1, 0].set_title("N = 50")
-     axs[1, 1].plot(x4, err4, color = 'green')
-     axs[1, 1].set_title("N = 100")
-
-     for ax in axs.flat:
-         ax.set(xlabel = 'x', ylabel = 'error')
-
-     for ax in fig.get_axes():
-         ax.label_outer()
-        
-     plt.show()
-
-    #############################################################################
-
-     N = np.arange(2, 51)
-     err_norms = np.zeros(49)
-
-     for i in range(len(N)):
-         h = (b-a)/N[i]
-         x = np.linspace(a, b, N[i]+1)
-         p, q, r = eval_pqr1(x)
-         yapp = make_FDmatDir(x, p, q, r, h, N[i], alpha, beta)
-         err_norms[i] = la1.norm(yapp - y(x))
-
-     plt.semilogy(N, err_norms, '-go')
-     plt.xlabel("N")
-     plt.ylabel("error")
-     plt.title("Accuracy of BVP with Finite Difference")
-     plt.show()
-
-     return
-
 def fd_SP_homog_BC():
-     a = -1
+     a = 0
      b = 1
      alpha = 0
      beta = 0
@@ -149,16 +31,18 @@ def fd_SP_homog_BC():
      h2 = (b-a)/N2
      h3 = (b-a)/N3
      h4 = (b-a)/N4
-     
+
      x1 = np.linspace(a,b,N1+1)
      x2 = np.linspace(a,b,N2+1)
      x3 = np.linspace(a,b,N3+1)
      x4 = np.linspace(a,b,N4+1)
 
-     p1, q1, r1 = eval_pqr1(x1)
-     p2, q2, r2 = eval_pqr1(x2)
-     p3, q3, r3 = eval_pqr1(x3)
-     p4, q4, r4 = eval_pqr1(x4)
+     y = lambda x: (-(np.exp(4)*x-x+np.exp(2-2*x)-np.exp(2*x+2)))/(1-np.exp(4))
+
+     p1, q1, r1 = eval_pqr2(x1)
+     p2, q2, r2 = eval_pqr2(x2)
+     p3, q3, r3 = eval_pqr2(x3)
+     p4, q4, r4 = eval_pqr2(x4)
      
      yapp1 = make_FDmatDir_SP(x1,p1,q1,r1,h1,N1,alpha,beta)
      yapp2 = make_FDmatDir_SP(x2,p2,q2,r2,h2,N2,alpha,beta)
@@ -169,12 +53,16 @@ def fd_SP_homog_BC():
      title = r"Finite Difference Approximation"
      fig.suptitle(title)
      axs[0, 0].plot(x1, yapp1, color = 'green')
+     axs[0, 0].plot(x1, y(x1))
      axs[0, 0].set_title("N = 10")
      axs[0, 1].plot(x2, yapp2, color = 'green')
+     axs[0, 1].plot(x2, y(x2))
      axs[0, 1].set_title("N = 20")
      axs[1, 0].plot(x3, yapp3, color = 'green')
+     axs[1, 0].plot(x3, y(x3))
      axs[1, 0].set_title("N = 50")
      axs[1, 1].plot(x4, yapp4, color = 'green')
+     axs[1, 1].plot(x4, y(x4))
      axs[1, 1].set_title("N = 100")
 
      for ax in axs.flat:
@@ -186,8 +74,6 @@ def fd_SP_homog_BC():
      plt.show()
 
     ######################################################################
-
-     y = lambda x: (np.exp(4*x) - x*np.sinh(4)-np.cosh(4))/16
              
      yex1 = y(x1)
      yex2 = y(x2)
@@ -239,8 +125,8 @@ def fd_SP_homog_BC():
      for i in range(len(N)):
          h = (b-a)/N[i]
          x = np.linspace(a, b, N[i]+1)
-         p, q, r = eval_pqr1(x)
-         yapp = make_FDmatDir(x, p, q, r, h, N[i], alpha, beta)
+         p, q, r = eval_pqr2(x)
+         yapp = make_FDmatDir_SP(x, p, q, r, h, N[i], alpha, beta)
          err_norms[i] = la1.norm(yapp - y(x))
 
      plt.semilogy(N, err_norms, '-go')
@@ -252,15 +138,15 @@ def fd_SP_homog_BC():
      return
 
 def FEM_homog_BC():
-     a = -1
+     a = 0
      b = 1
      alpha = 0
      beta = 0
 
-     u = lambda x: (np.exp(4*x) - x*np.sinh(4)-np.cosh(4))/16
+     u = lambda x: (-(np.exp(4)*x-x+np.exp(2-2*x)-np.exp(2*x+2)))/(1-np.exp(4))
      
      # N = number of nodes +1;
-     N1 = 2
+     N1 = 10
      N2 = 20
      N3 = 50
      N4 = 100
@@ -313,8 +199,8 @@ def FEM_homog_BC():
          uapp4[j] = sol4[j-1]
          
      uex1 = u(xh1)
-     print('exact', uex1)
-     print('app', uapp1)
+     # print('exact', uex1)
+     # print('app', uapp1)
      uex2 = u(xh2)
      uex3 = u(xh3)
      uex4 = u(xh4)
@@ -323,12 +209,16 @@ def FEM_homog_BC():
      title = "Finite Element Approximation"
      fig.suptitle(title)
      axs[0, 0].plot(xh1, uapp1, color = 'green')
+     axs[0, 0].plot(xh1, u(xh1))
      axs[0, 0].set_title("N = 10")
      axs[0, 1].plot(xh2, uapp2, color = 'green')
+     axs[0, 1].plot(xh2, u(xh2))
      axs[0, 1].set_title("N = 20")
      axs[1, 0].plot(xh3, uapp3, color = 'green')
+     axs[1, 0].plot(xh3, u(xh3))
      axs[1, 0].set_title("N = 50")
      axs[1, 1].plot(xh4, uapp4, color = 'green')
+     axs[1, 1].plot(xh4, u(xh4))
      axs[1, 1].set_title("N = 100")
 
      for ax in axs.flat:
@@ -936,7 +826,7 @@ def fd_neumann_BC():
 
 #fd_homog_BC()
 fd_SP_homog_BC()
-FEM_homog_BC()
+# FEM_homog_BC()
 # fd_inhomog_BC1()
-fd_SP_inhomog_BC1()
-FEM_inhomog_BC1()
+# fd_SP_inhomog_BC1()
+# FEM_inhomog_BC1()

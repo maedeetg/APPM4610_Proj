@@ -66,7 +66,7 @@ def cheb2(N):
     return [D2_N, x]
 
 def cheb_ab(a, b, N):
-    c = 1/2
+    c = (b - a)/2
     [D_N, x] = cheb(N)
     D_N2 = D_N/c
     

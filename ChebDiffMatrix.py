@@ -65,8 +65,9 @@ def cheb2(N):
     D2_N = np.dot(D_N, D_N)
     return [D2_N, x]
 
-def cheb_ab(a, b, N):
-    c = 1/2
+def cheb_ab(a, 
+            b, N):
+    c = (b - a)/2
     [D_N, x] = cheb(N)
     D_N2 = D_N/c
     
